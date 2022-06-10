@@ -8,7 +8,6 @@ metadata:
 spec:
   source:
     git:
-      url: git-source-url
+      url: https://github.com/ryanjbaxter/movies
       ref:
-        branch: git-branch-name
-        
+        branch: main
