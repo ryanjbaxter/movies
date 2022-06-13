@@ -15,7 +15,7 @@ public class MoviesApplication {
 
 	@GetMapping
 	public String index() {
-		return "movies";
+		return "movies 2";
 	}
 
 }
