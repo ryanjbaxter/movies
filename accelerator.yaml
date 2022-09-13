@@ -1,0 +1,25 @@
+accelerator:
+  displayName: Spring Boot Movies App
+  description: A sample Spring Boot app to demonstrate the capabilities of Spring Boot and TAP.
+  tags:
+  - java
+  - spring
+  - web
+  - jpa
+  - mysql
+  - tanzu
+options:
+    - name: resourceclaimId
+      inputType: text
+      defaultValue: "mysql-movies"
+      label: ID for the MySQL ResourceClaim
+      required: true
+engine:
+  chain:
+    - merge:
+      - include: [ "workload.yaml" ]
+        chain:
+        - type: ReplaceText
+          substitutions:
+          - text: "mysql-movies"
+            with: "#resourceclaimId"

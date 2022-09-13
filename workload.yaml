@@ -16,12 +16,14 @@ spec:
         value: "17.*"
   serviceClaims:
   - name: db
+    # The preferred way to bind to a service is to use a ResourceClaim
+    # The MySQL Service documentation however does not yet reflect this
+    # 
+    # ref:
+    #   apiVersion: with.sql.tanzu.vmware.com/v1
+    #   kind: MySQL
+    #   name: mysql-movies
     ref:
-      apiVersion: with.sql.tanzu.vmware.com/v1
-      kind: MySQL
-      name: mysql-movies
-  source:
-    git:
-      url: https://github.com/ryanjbaxter/movies
-      ref:
-        branch: main
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: mysql-movies
