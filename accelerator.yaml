@@ -15,10 +15,11 @@ accelerator:
       label: ID for the MySQL ResourceClaim
       required: true
   engine:
-    - merge:
-      - include: [ "workload.yaml" ]
-        chain:
-        - type: ReplaceText
+    merge:
+    - include: ["**/*"]
+    - include: ["**/workload.yaml"]
+      chain:
+      - type: ReplaceText
           substitutions:
           - text: "mysql-movies"
             with: "#resourceclaimId"
