@@ -8,18 +8,24 @@ accelerator:
   - jpa
   - mysql
   - tanzu
+
   options:
-    - name: resourceclaimId
-      inputType: text
-      defaultValue: "mysql-movies"
-      label: ID for the MySQL ResourceClaim
-      required: true
-  engine:
-    merge:
-    - include: ["**/*"]
-    - include: ["**/workload.yaml"]
-      chain:
-      - type: ReplaceText
-          substitutions:
-          - text: "mysql-movies"
-            with: "#resourceclaimId"
+  - name: resourceclaimId
+    inputType: text
+    label: Name of resource claim for the MySQL service
+    defaultValue: mysql-movies
+    required: true
+  # imports:
+  # - name: tap-workload
+
+engine:
+  onConflict: NWayDiff
+  merge:
+  - include: [ "**/*" ]
+    exclude: [ "workload.yaml" ]
+  - include: [ "workload.yaml"]
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: mysql-movies
+        with: "#resourceclaimId"
