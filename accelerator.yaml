@@ -19,7 +19,7 @@ accelerator:
   # - name: tap-workload
 
 engine:
-  onConflict: NWayDiff
+  # onConflict: NWayDiff
   merge:
   - include: [ "**/*" ]
     exclude: [ "workload.yaml" ]
