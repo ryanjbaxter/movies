@@ -21,11 +21,6 @@ class MovieController {
 		this.repo = repo;
 	}
 
-	@GetMapping("/")
-	public String index() {
-		return "movies 3";
-	}
-
 	@GetMapping("/movies")
 	public Iterable<Movie> movies() {
 		return repo.findAll();

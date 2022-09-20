@@ -1,10 +1,10 @@
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='gcr.io/cf-sandbox-rbaxter/tap-bootcamp/build-service/movies')
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='my-image-repo.com/build-service/movies')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='dev-namespace')
 
 k8s_custom_deploy(
     'movies',
-    apply_cmd="tanzu apps workload apply -f ./workload.yaml --live-update" +
+    apply_cmd="tanzu apps workload apply -f ./workload.yaml --debug --live-update" +
         " --local-path " + LOCAL_PATH +
         " --source-image " + SOURCE_IMAGE +
         " --namespace " + NAMESPACE +
@@ -18,6 +18,5 @@ k8s_custom_deploy(
     ]
 )
 
-k8s_resource('movies', port_forwards=["8080:8080"],
+k8s_resource('movies', port_forwards=["8080:8080", "8081:8081", "9005:9005"],
     extra_pod_selectors=[{'serving.knative.dev/service': 'movies'}])
-allow_k8s_contexts('arn:aws:eks:us-east-2:833443578445:cluster/rb-tap')
