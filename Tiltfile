@@ -4,7 +4,7 @@ NAMESPACE = os.getenv("NAMESPACE", default='dev-namespace')
 
 k8s_custom_deploy(
     'movies',
-    apply_cmd="tanzu apps workload apply -f ./workload.yaml --debug --live-update" +
+    apply_cmd="tanzu apps workload apply -f ./config/workload.yaml --debug --live-update" +
         " --local-path " + LOCAL_PATH +
         " --source-image " + SOURCE_IMAGE +
         " --namespace " + NAMESPACE +
