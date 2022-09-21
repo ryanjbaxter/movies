@@ -32,8 +32,8 @@ engine:
   # onConflict: NWayDiff
   merge:
   - include: [ "**/*" ]
-    exclude: [ "workload.yaml", "Tiltfile" ]
-  - include: [ "workload.yaml"]
+    exclude: [ "config/workload.yaml", "Tiltfile" ]
+  - include: [ "config/workload.yaml"]
     chain:
     - type: ReplaceText
       substitutions:
