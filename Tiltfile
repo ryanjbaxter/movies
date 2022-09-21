@@ -1,4 +1,4 @@
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='my-image-repo.com/build-service/movies')
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='my-image-repo.com/movies')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='dev-namespace')
 
